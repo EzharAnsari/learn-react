@@ -1,5 +1,6 @@
 import Hello from "./Hello";
 import KgButton from "./KgButton";
+import Random from "./Random";
 
 // functional component
 function App() {
@@ -7,6 +8,10 @@ function App() {
     <div>
       <h1>Hello World</h1>
       <Hello></Hello>
+      <Random></Random>
+      <Random></Random>
+      <Random></Random>
+      <Random></Random>
     </div>
   );
 }
