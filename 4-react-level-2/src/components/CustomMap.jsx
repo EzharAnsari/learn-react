@@ -13,9 +13,11 @@ function CustomMap() {
   return (
     <>
       <h1>Health Foods</h1>
-      <ul class="list-group">
+      <ul className="list-group">
         {foods.map((food) => (
-          <li class="list-group-item">{food}</li>
+          <li key={food} className="list-group-item">
+            {food}
+          </li>
         ))}
       </ul>
     </>
