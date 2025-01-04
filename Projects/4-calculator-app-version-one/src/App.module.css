@@ -10,20 +10,3 @@
   width: 200px;
   border-radius: 5px;
 }
-
-.calculatorDisplay {
-  margin: 10px;
-  width: 175px;
-  font-size: 25px;
-}
-.calculatorButtons{
- display: flex;
- justify-content: center;
- flex-wrap: wrap;
-}
-
-.button {
-  width: 45px;
-  height: 45px;
-  margin: 3px;
-}
