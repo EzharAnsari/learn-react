@@ -1,3 +1,4 @@
+import Container from "./Container";
 import FoodItems from "./FoodItems";
 
 function UserGreeting() {
@@ -36,10 +37,16 @@ function ConditionalRendering() {
 
   return (
     <>
-      <h1>Health Foods</h1>
-      {/* {foods.length === 0 ? <h3>I am still hungry</h3> : null}  // ternary operators */}
-      {/* {foods.length == 0 && <h3>I am still hungry</h3>}  // logical operators */}
-      <FoodItems items={foods}></FoodItems>
+      <Container>
+        <h1>Healthy Foods</h1>
+        <FoodItems items={foods}></FoodItems>
+      </Container>
+      <Container>
+        <p>
+          Above is the list of healthy foods that are good for your health and
+          well being
+        </p>
+      </Container>
     </>
   );
 }
