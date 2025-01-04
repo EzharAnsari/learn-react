@@ -1,3 +1,5 @@
+import FoodItems from "./FoodItems";
+
 function UserGreeting() {
   return <h1>Welcome back!</h1>;
 }
@@ -37,13 +39,7 @@ function ConditionalRendering() {
       <h1>Health Foods</h1>
       {/* {foods.length === 0 ? <h3>I am still hungry</h3> : null}  // ternary operators */}
       {/* {foods.length == 0 && <h3>I am still hungry</h3>}  // logical operators */}
-      <ul className="list-group">
-        {foods.map((food) => (
-          <li key={food} className="list-group-item">
-            {food}
-          </li>
-        ))}
-      </ul>
+      <FoodItems items={foods}></FoodItems>
     </>
   );
 }
