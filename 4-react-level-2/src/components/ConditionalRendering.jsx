@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Container from "./Container";
 import FoodInput from "./FoodInput";
 import FoodItems from "./FoodItems";
@@ -20,7 +21,7 @@ function Greeting() {
 }
 
 function ConditionalRendering() {
-  let foods = [
+  let items = [
     "Fish",
     "Broccoli",
     "cruciferous vegetables",
@@ -30,22 +31,29 @@ function ConditionalRendering() {
     "Kale",
     "Peanut butter",
   ];
+
+  let [foodItems, setFoodItems] = useState(items);
   // let foods = [];
 
   // if (foods.length === 0) {
   //   return <h3>I am still hungry</h3>;
   // }
 
-  const handleOnChange = (event) => {
-    console.log(event.target.value);
+  const onKeyDown = (event) => {
+    if (event.key === "Enter") {
+      let newFoodItem = event.target.value;
+      event.target.value = "";
+      let newFoodItems = [...foodItems, newFoodItem];
+      setFoodItems(newFoodItems);
+    }
   };
 
   return (
     <>
       <Container>
         <h1>Healthy Foods</h1>
-        <FoodInput handleOnChange={handleOnChange}></FoodInput>
-        <FoodItems items={foods}></FoodItems>
+        <FoodInput handleKeyDown={onKeyDown}></FoodInput>
+        <FoodItems items={foodItems}></FoodItems>
       </Container>
     </>
   );

@@ -1,9 +1,12 @@
+import { useState } from "react";
 import Item from "./Item";
 
 function FoodItems({ items }) {
-  const handleBuyButtonClicked = (event) => {
-    console.log(event);
-    console.log(`${food} being bought`);
+  let [activeFoodItems, setActiveFoodItems] = useState([]);
+
+  const handleBuyButtonClicked = (food, event) => {
+    let newActiveFoodItems = [...activeFoodItems, food];
+    setActiveFoodItems(newActiveFoodItems);
   };
 
   return (
@@ -15,7 +18,8 @@ function FoodItems({ items }) {
         <Item
           key={food}
           foodItem={food}
-          handleOnClick={() => console.log(`${food} being bought`)}
+          bought={activeFoodItems.includes(food)}
+          handleOnClick={(event) => handleBuyButtonClicked(food, event)}
         ></Item>
       ))}
     </ul>
