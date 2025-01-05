@@ -1,4 +1,5 @@
 import Container from "./Container";
+import FoodInput from "./FoodInput";
 import FoodItems from "./FoodItems";
 
 function UserGreeting() {
@@ -39,13 +40,8 @@ function ConditionalRendering() {
     <>
       <Container>
         <h1>Healthy Foods</h1>
+        <FoodInput></FoodInput>
         <FoodItems items={foods}></FoodItems>
-      </Container>
-      <Container>
-        <p>
-          Above is the list of healthy foods that are good for your health and
-          well being
-        </p>
       </Container>
     </>
   );
