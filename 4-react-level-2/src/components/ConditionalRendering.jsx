@@ -36,11 +36,15 @@ function ConditionalRendering() {
   //   return <h3>I am still hungry</h3>;
   // }
 
+  const handleOnChange = (event) => {
+    console.log(event.target.value);
+  };
+
   return (
     <>
       <Container>
         <h1>Healthy Foods</h1>
-        <FoodInput></FoodInput>
+        <FoodInput handleOnChange={handleOnChange}></FoodInput>
         <FoodItems items={foods}></FoodItems>
       </Container>
     </>
