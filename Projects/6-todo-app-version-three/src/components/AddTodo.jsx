@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { IoAddSharp } from "react-icons/io5";
 
 function AddTodo({ handleAddButtonClick }) {
   const [inputName, setInputName] = useState("");
@@ -42,7 +43,7 @@ function AddTodo({ handleAddButtonClick }) {
             className="btn btn-success kg-button"
             onClick={handleAddButton}
           >
-            Add
+            <IoAddSharp />
           </button>
         </div>
       </div>
