@@ -13,8 +13,9 @@ function AddTodo({ handleAddButtonClick }) {
     setInputDate(event.target.value);
   };
 
-  const handleAddButton = () => {
+  const handleAddButton = (event) => {
     console.log("clicked");
+    event.preventDefault();
     const todoItem = {
       name: inputName,
       dueDate: inputDate,
@@ -26,7 +27,7 @@ function AddTodo({ handleAddButtonClick }) {
 
   return (
     <div className="container">
-      <div className="row kg-row">
+      <form className="row kg-row" onSubmit={(e) => handleAddButton(e)}>
         <div className="col-6">
           <input
             type="text"
@@ -39,14 +40,11 @@ function AddTodo({ handleAddButtonClick }) {
           <input type="date" value={inputDate} onChange={handleInputDate} />
         </div>
         <div className="col-2">
-          <button
-            className="btn btn-success kg-button"
-            onClick={handleAddButton}
-          >
+          <button className="btn btn-success kg-button">
             <IoAddSharp />
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }

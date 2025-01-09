@@ -1,7 +1,7 @@
 import TodoItem from "./TodoItem";
 
 const TodoItems = ({ items, handleDeleteBtn }) => {
-  items.map((ele) => console.log(ele));
+  // items.map((ele) => console.log(ele));
   return (
     <div className="items-container">
       {items.map((item) => (
