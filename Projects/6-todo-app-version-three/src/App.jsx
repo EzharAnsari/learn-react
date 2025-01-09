@@ -24,10 +24,7 @@ function App() {
   const [todoItems, setTodoItems] = useState(initItems);
 
   const handleAddButtonClick = (newTodoItem) => {
-    console.log(newTodoItem);
-    const newTodoItems = [...todoItems, newTodoItem];
-    console.log(newTodoItems);
-    setTodoItems(newTodoItems);
+    setTodoItems((currItems) => [...currItems, newTodoItem]);
   };
 
   const handleDeleteBtn = (name, date) => {
