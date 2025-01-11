@@ -1,8 +1,12 @@
+import { useContext } from "react";
 import { MdDeleteOutline } from "react-icons/md";
+import { TodoItemsContext } from "../store/todo-items-store";
 
-function TodoItem({ todoName, todoDate, handleDeleteBtn }) {
+function TodoItem({ todoName, todoDate }) {
+  const { deleteItem } = useContext(TodoItemsContext);
+
   const handleClicke = () => {
-    handleDeleteBtn(todoName, todoDate);
+    deleteItem(todoName, todoDate);
   };
 
   return (

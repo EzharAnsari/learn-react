@@ -1,7 +1,10 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { IoAddSharp } from "react-icons/io5";
+import { TodoItemsContext } from "../store/todo-items-store";
 
-function AddTodo({ handleAddButtonClick }) {
+function AddTodo() {
+  const { addNewItem } = useContext(TodoItemsContext);
+
   const inputNameElement = useRef("");
   const inputDateElement = useRef("");
 
@@ -12,7 +15,7 @@ function AddTodo({ handleAddButtonClick }) {
       name: inputNameElement.current.value,
       dueDate: inputDateElement.current.value,
     };
-    handleAddButtonClick(todoItem);
+    addNewItem(todoItem);
     inputNameElement.current.value = "";
     inputDateElement.current.value = "";
   };
