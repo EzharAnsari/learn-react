@@ -6,7 +6,7 @@ function TodoItem({ todoName, todoDate }) {
   const { deleteItem } = useContext(TodoItemsContext);
 
   const handleClicke = () => {
-    deleteItem(todoName, todoDate);
+    deleteItem(todoName);
   };
 
   return (

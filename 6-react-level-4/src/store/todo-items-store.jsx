@@ -1,16 +1,16 @@
-import { createContext } from "react";
+import { useReducer, createContext } from "react";
 
-const handleAddButtonClick = (newTodoItem) => {
-  setTodoItems((currItems) => [...currItems, newTodoItem]);
-};
+const todoItemsReducer = (currTodoItems, action) => {
+  let newTodoItems = currTodoItems;
+  if (action.type === "NEW_ITEM") {
+    newTodoItems = [...currTodoItems, action.payload.newTodoItem];
+  } else if (action.type === "DELETE_ITEM") {
+    newTodoItems = currTodoItems.filter(
+      (item) => item.name !== action.payload.name
+    );
+  }
 
-const handleDeleteBtn = (name, date) => {
-  console.log(name, date);
-  const result = todoItems.filter((ele) => {
-    return ele.name !== name && ele.dueDate !== date;
-  });
-
-  setTodoItems(result);
+  return newTodoItems;
 };
 
 export const TodoItemsContext = createContext({
@@ -18,3 +18,42 @@ export const TodoItemsContext = createContext({
   addNewItem: () => {},
   deleteItem: () => {},
 });
+
+const TodoItemsContextProvider = ({ children }) => {
+  const [todoItems, dispatchTodoItems] = useReducer(todoItemsReducer, []);
+
+  const addNewItem = (newTodoItem) => {
+    const newItemAction = {
+      type: "NEW_ITEM",
+      payload: {
+        newTodoItem,
+      },
+    };
+    dispatchTodoItems(newItemAction);
+  };
+
+  const deleteItem = (name) => {
+    const newItemAction = {
+      type: "DELETE_ITEM",
+      payload: {
+        name,
+      },
+    };
+
+    dispatchTodoItems(newItemAction);
+  };
+
+  return (
+    <TodoItemsContext.Provider
+      value={{
+        items: todoItems,
+        addNewItem,
+        deleteItem,
+      }}
+    >
+      {children}
+    </TodoItemsContext.Provider>
+  );
+};
+
+export default TodoItemsContextProvider;

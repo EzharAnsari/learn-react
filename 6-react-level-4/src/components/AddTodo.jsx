@@ -9,7 +9,6 @@ function AddTodo() {
   const inputDateElement = useRef("");
 
   const handleAddButton = (event) => {
-    console.log("clicked");
     event.preventDefault();
     const todoItem = {
       name: inputNameElement.current.value,
