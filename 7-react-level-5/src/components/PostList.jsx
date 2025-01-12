@@ -3,22 +3,28 @@ import { PostList as PostListData } from "../store/post-list-store";
 import { useContext } from "react";
 import WelcomeMessage from "./WelcomeMessage";
 import { useEffect } from "react";
+import { useState } from "react";
+import LoadingSpinner from "./LoadingSpinner";
 
 const PostList = () => {
   const { postList, addInitialPost } = useContext(PostListData);
+  const [fetching, setFetching] = useState(false);
 
   useEffect(() => {
+    setFetching(true);
     fetch("https://dummyjson.com/posts")
       .then((res) => res.json())
-      .then((data) => addInitialPost(data.posts));
+      .then((data) => {
+        addInitialPost(data.posts);
+        setFetching(false);
+      });
   }, []);
 
   return (
     <>
-      {postList.length === 0 && <WelcomeMessage />}
-      {postList.map((post) => (
-        <Post key={post.id} post={post} />
-      ))}
+      {fetching && <LoadingSpinner />}
+      {!fetching && postList.length === 0 && <WelcomeMessage />}
+      {!fetching && postList.map((post) => <Post key={post.id} post={post} />)}
     </>
   );
 };
