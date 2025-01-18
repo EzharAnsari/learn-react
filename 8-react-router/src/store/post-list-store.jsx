@@ -2,7 +2,6 @@ import { createContext, useReducer, useEffect, useState } from "react";
 
 export const PostList = createContext({
   postList: [],
-  fetching: false,
   addPost: () => {},
   deletePost: () => {},
 });
@@ -23,7 +22,7 @@ const postListReducer = (currPostList, action) => {
 
 const PostListContextProvider = ({ children }) => {
   const [postList, dispatchPostList] = useReducer(postListReducer, []);
-  const [fetching, setFetching] = useState(false);
+  // const [fetching, setFetching] = useState(false);
 
   const addPost = (post) => {
     dispatchPostList({
@@ -52,7 +51,7 @@ const PostListContextProvider = ({ children }) => {
     });
   };
 
-  useEffect(() => {
+  /*useEffect(() => {
     setFetching(true);
 
     const controller = new AbortController();
@@ -69,11 +68,11 @@ const PostListContextProvider = ({ children }) => {
       console.log("Cleaning up useEffect.");
       controller.abort();
     };
-  }, []);
+  }, []); */
 
   return (
     <PostList.Provider
-      value={{ postList, fetching, addPost, addInitialPost, deletePost }}
+      value={{ postList, addPost, addInitialPost, deletePost }}
     >
       {children}
     </PostList.Provider>
