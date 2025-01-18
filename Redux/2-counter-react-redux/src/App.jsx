@@ -1,13 +1,27 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import Header from "./components/Header";
+import DisplayCounter from "./components/DisplayCounter";
+import Container from "./components/Container";
+import Controles from "./components/Controles";
+import { useSelector } from "react-redux";
+import PrivacyMessage from "./components/PrivacyMessage";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const privacy = useSelector((store) => store.privacy);
 
   return (
     <>
-      <div>React + Redux</div>
+      <div className="px-4 py-5 my-5 text-center">
+        <Container>
+          <Header />
+          <div className="col-lg-6 mx-auto">
+            {privacy ? <PrivacyMessage /> : <DisplayCounter />}
+            <Controles />
+          </div>
+        </Container>
+      </div>
     </>
   );
 }
